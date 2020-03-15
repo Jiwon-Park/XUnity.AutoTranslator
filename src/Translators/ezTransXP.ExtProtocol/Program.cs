@@ -7,16 +7,8 @@ namespace ezTransXP.ExtProtocol
 {
    class Program
    {
-      /*static void OutputFile(string text)
-      {
-         StreamWriter output = new StreamWriter( "output2.txt", append: true );
-         output.WriteLine( text );
-         output.Close();
-      }*/
       static void Main( string[] args )
       {
-         // Implementation of this is based off of texel-sensei's LEC implementation
-
          try
          {
             if( args.Length == 0 )
@@ -32,6 +24,11 @@ namespace ezTransXP.ExtProtocol
             var datPath = Path.Combine( powerTranslatorPath, @"Dat" );  //initialize path
 
             var dllPath = Path.Combine( powerTranslatorPath, @"J2KEngineH.dll" );   //Ehnd engine path
+            if( !File.Exists( dllPath ) )
+            {
+               dllPath = Path.Combine( powerTranslatorPath, @"J2KEngine.dll" );
+            }
+
 
             using( var translator = new ezTransTranslationLibrary( dllPath ) )
             {
